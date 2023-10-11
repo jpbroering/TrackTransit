@@ -39,7 +39,7 @@ export default function SignIn(){
                   </View>
                 </View>
                 <TouchableOpacity>
-                <Text style={styles.registerText}>Ainda não tem conta? <Text style={styles.textBold}>Cadastre-se</Text></Text>
+                <Text style={styles.registerText}>Já possui uma conta? <Text style={styles.textBold}>Entrar</Text></Text>
                 </TouchableOpacity>
             </View>
         </View>
