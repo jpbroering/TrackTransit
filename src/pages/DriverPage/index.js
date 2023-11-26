@@ -205,6 +205,7 @@ const styles = StyleSheet.create({
     line: {
         backgroundColor: '#4B4B4B',
         height: 1.5,
-        marginBottom: 7
+        marginBottom: 7,
+        backgroundColor: '#fff'
     }
 })
