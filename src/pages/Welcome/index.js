@@ -14,6 +14,7 @@ export default function Welcome() {
         <TouchableOpacity onPress={ ()=> navigation.navigate('Login') } style={styles.button}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
+
         <TouchableOpacity onPress={ ()=> navigation.navigate('SignIn') } style={styles.register}>
           <Text style={styles.registerText}>Ainda não tem conta? <Text style={styles.textBold}>Cadastre-se</Text></Text>
         </TouchableOpacity>
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
   },
   register: {
     marginTop: 14,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   buttonText: {
     color: '#000000',

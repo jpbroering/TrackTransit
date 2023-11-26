@@ -1,21 +1,68 @@
-import 'react'
+import React, {useState} from 'react'
 import { View, StyleSheet, Image, TextInput, TouchableOpacity, Text, Svg } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
 
+import Icon from 'react-native-vector-icons/FontAwesome'
+
 export default function SignIn(){
     const navigation = useNavigation()
+    const [visibility, setVisibility] = React.useState(true)
+    const [repeatVisibility, setRepeatVisibility] = React.useState(true)
+    const togglePasswordVisibility = ()=>{
+      setVisibility(!visibility)
+    }
+    const togglePasswordRepeatVisibility = ()=>{
+      setRepeatVisibility(!repeatVisibility)
+    }
     return(
         <View style={ styles.container } >
             <View style={ styles.containerHeader }>
                 <Image source={require('../../assets/tLogo.png')} />
             </View>
             <View style={ styles.containerForm }>
+                <View style={styles.containerInput}>
                 <TextInput placeholder='nome' style={styles.input}/>
-                <TextInput placeholder='email' style={styles.input}/>
-                <TextInput placeholder='senha' secureTextEntry={true} style={styles.input}/>
-                <TextInput placeholder='repita sua senha' secureTextEntry={true} style={styles.input}/>
-                <TouchableOpacity style={styles.button}>
+                </View>
+                <View style={styles.containerInput}>
+                <TextInput 
+                  placeholder='email' 
+                  style={styles.input}
+                />
+                </View>
+              <View style={styles.containerInputPassword}> 
+                <TextInput 
+                  id='inputPassword' 
+                  placeholder='senha' 
+                  secureTextEntry={visibility} 
+                  style={styles.inputPassword}
+                />
+                <Icon.Button
+                  name={visibility ? "eye" : "eye-slash"}
+                  onPress={togglePasswordVisibility}
+                  backgroundColor={'#fff'}
+                  color={'black'}
+                  borderRadius={50}
+                  >
+                  </Icon.Button>
+              </View> 
+              <View style={styles.containerInputRepeatPassword}> 
+                <TextInput 
+                  id='inputPassword' 
+                  placeholder='senha' 
+                  secureTextEntry={repeatVisibility} 
+                  style={styles.inputPassword}
+                />
+                <Icon.Button
+                  name={repeatVisibility ? "eye" : "eye-slash"}
+                  onPress={togglePasswordRepeatVisibility}
+                  backgroundColor={'#fff'}
+                  color={'black'}
+                  borderRadius={50}
+                  >
+                  </Icon.Button>
+              </View> 
+                <TouchableOpacity onPress={()=>navigation.navigate('Login')} style={styles.button}>
                   <Text style={styles.buttonText}>Criar</Text>
                 </TouchableOpacity>
             </View>
@@ -38,7 +85,7 @@ export default function SignIn(){
                     </TouchableOpacity>
                   </View>
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
                 <Text style={styles.registerText}>Já possui uma conta? <Text style={styles.textBold}>Entrar</Text></Text>
                 </TouchableOpacity>
             </View>
@@ -92,14 +139,13 @@ const styles = StyleSheet.create({
         textAlign: 'center'
       },
       input: {
-        marginTop: '3%',
         backgroundColor: '#fff',
         fontSize: 16,
-        width: '70%',
         paddingLeft: 20,
         paddingRight: 20,
         height: 35,
         borderRadius: 50,
+        width: '85%'
       },
       icon: {
         width: 36,
@@ -110,5 +156,36 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginRight: '5%',
         marginLeft: '5%'
-      }
+      },
+      containerInput: {
+        width: '80%',
+        marginTop: '3%',
+        backgroundColor: '#fff',
+        borderRadius: 50,
+        display: 'flex',
+        flexDirection: 'row',
+      },
+      containerInputPassword: {
+        width: '80%',
+        marginTop: '3%',
+        backgroundColor: '#fff',
+        borderRadius: 50,
+        display: 'flex',
+        flexDirection: 'row',
+      },
+      inputPassword: {
+        fontSize: 16,
+        paddingLeft: 20,
+        paddingRight: 20,
+        height: 35,
+        width: '85%'
+      },
+      containerInputRepeatPassword: {
+        width: '80%',
+        marginTop: '3%',
+        backgroundColor: '#fff',
+        borderRadius: 50,
+        display: 'flex',
+        flexDirection: 'row',
+      },
 })
